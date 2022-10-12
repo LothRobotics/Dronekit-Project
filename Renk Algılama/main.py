@@ -11,7 +11,6 @@ while True:
     blue_mask = cv2.inRange(hsv_frame, lower_blue, upper_blue)
     blue = cv2.bitwise_and(frame, frame, mask = blue_mask)
     cv2.imshow("Webcam", frame)
-    # cv2.imshow("Green Mask", green_mask)
     cv2.imshow("Blue", blue)
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
