@@ -6,8 +6,8 @@ while True:
     frame = cv2.flip(frame, 1)
     hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     # blue
-    lower_blue = np.array([100, 150, 0])
-    upper_blue = np.array([140, 255, 255])
+    lower_blue = np.array([0, 50, 50])
+    upper_blue = np.array([10, 255, 255])
     blue_mask = cv2.inRange(hsv_frame, lower_blue, upper_blue)
     blue = cv2.bitwise_and(frame, frame, mask = blue_mask)
     cv2.imshow("Webcam", frame)
