@@ -4,21 +4,23 @@ import time, math
 
 from dronekit import connect, VehicleMode, LocationGlobalRelative
 
+
 def get_distance_metres(aLocation1, aLocation2):
     """
     Returns the ground distance in metres between two LocationGlobal objects.
-    This method is an approximation, and will not be accurate over large distances and close to the 
-    earth's poles. It comes from the ArduPilot test code: 
+    This method is an approximation, and will not be accurate over large distances and close to the
+    earth's poles. It comes from the ArduPilot test code:
     https://github.com/diydrones/ardupilot/blob/master/Tools/autotest/common.py
     """
     dlat = aLocation2.lat - aLocation1.lat
     dlong = aLocation2.lon - aLocation1.lon
-    return math.sqrt((dlat*dlat) + (dlong*dlong)) * 1.113195e5
+    return math.sqrt((dlat * dlat) + (dlong * dlong)) * 1.113195e5
+
 
 vehicle = connect("udp:127.0.0.1:1451", wait_ready=True)
 
+
 def arm_and_takeoff(aTargetAltitude):
-    
     """
     Arms vehicle and fly to aTargetAltitude.
     """
@@ -64,10 +66,10 @@ print("ilk wp gidiliyor")
 
 vehicle.simple_goto(point1)
 
-while get_distance_metres(vehicle.location.global_frame, point1)>2:
+while get_distance_metres(vehicle.location.global_frame, point1) > 2:
     vehicle.simple_goto(point1)
     time.sleep(0.5)
-print("point1'e ulaşıldı.")    
+print("point1'e ulaşıldı.")
 time.sleep(20)
 
 vehicle.mode = VehicleMode("RTL")
